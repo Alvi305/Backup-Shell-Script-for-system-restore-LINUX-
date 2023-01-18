@@ -1,0 +1,3 @@
+/home/alvi/Tasks/testfolder/ImageNetModel/images
+/home/alvi/Tasks/testfolder/ImageNetModel/object_detection
+
