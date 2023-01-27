@@ -2,8 +2,7 @@
 
 echo -e "This is for testing purpose"
 
-
-
+src=`ls -dR /home/alvi/Tasks/testfolder/ImageNetModel/*` # INPUT SRC DIRECTORY TO COPY FROM
 
 file="/home/alvi/Tasks/blacklist.txt"  #blacklistfile
 file2="/home/alvi/Tasks/whitelist_ext.txt" #whitelist extension text file
@@ -43,12 +42,11 @@ for k in ${white_arr[@]}; do
 done
 
 echo -e "------------------------------------------- "
-
 #see if subdirectories of pwd matches with blklist dirs
 
 echo -e "------------FILE COPY STARTS---------------"
 
-for i in  `ls -dR /home/alvi/Tasks/testfolder/ImageNetModel/*`
+for i in  $src
 
 do
  
@@ -69,41 +67,44 @@ then
     #echo -e "inside $i"
     echo -e "$i is not blacklisted"
     
+    echo -e "Copying required files from main and sub directories of $i....."
     
     for j in `ls -dR $i/*` # check 2nd depth of subdirectory 
     do
-    echo -e " 2nd depth dir $j"
+    #echo -e " Copying files from 2nd depth dir $j ...."
     
      #if [ -d "$j" ]; then
-        for k in ${white_arr[@]}; # go throu
+        for k in ${white_arr[@]}; # go through whitelist extensions
         do
         
-          echo -e "copying files with $k extension"   
-          echo "$j"
+         
           find "$j" -name "*$k" -exec cp --parents {} ~/Tasks/desttest \;
    
-        done
-      #fi
+     done # whitelist extension
+     
+     
       
-    done 
+    done  # for 2nd depth of directory
 
-     fi
+     fi # blklist if condition
         
-  fi
+  fi # empty dir if condition
  
-     
-     
-    #done
-    #cd ..
-
-   
+ 
+         
     elif [ -f "$i" ]
  then
      echo  -e "------------------------ "
-     echo -e "COPYING FILE $i... "
-     #cp -R "$i" /home/alvi/Tasks/desttest
+     
+     echo -e "Copying File(s) from 1st depth directory : $i"
+     
+     for k in ${white_arr[@]}; # go through whitelist extensions
+        do     
+          find "$i" -type f -name "*$k" -exec cp --parents {} ~/Tasks/desttest \;
    
-fi
+        done
+       
+fi #dir or file if condition
        
 done 
 
