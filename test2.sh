@@ -2,7 +2,7 @@
 
 echo -e "This is for testing purpose"
 
-src=`ls -dR /home/alvi/Tasks/testfolder/ImageNetModel/*` # INPUT SRC DIRECTORY TO COPY FROM
+src=`ls -dR /home/alvi/Tasks/testfolder/*` # INPUT SRC DIRECTORY TO COPY FROM
 
 file="/home/alvi/Tasks/blacklist.txt"  #blacklistfile
 file2="/home/alvi/Tasks/whitelist_ext.txt" #whitelist extension text file
