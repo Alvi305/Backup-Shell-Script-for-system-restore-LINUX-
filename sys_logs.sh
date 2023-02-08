@@ -1,63 +1,81 @@
 #! /bin/bash
 
+# enables storing terminal command 
 HISTFILE=~/.bash_history
-
 set -o history
 
-dest=`/home/alvi/Tasks/System_logs/Backup`
+# destination directory for SystemLog backup
+dest="/home/alvi/SystemLogs"
+dest_home="/home/alvi/SystemLogs/home"
 
 # system log
-journalctl --system --since "7 days ago" > syslog.txt
+journalctl --system --since "7 days ago" > /home/alvi/SystemLogs/syslog.txt
 
 # kernel log
-journalctl -t kernel --since "7 days ago" > kernellog.txt
-
-# for getting history of terminal commands with timestamps
-history -a > history.txt
+journalctl -t kernel --since "7 days ago" > /home/alvi/SystemLogs/kernellog.txt
 
 
 # list apt_packages
   #auto installed packages
   
-  apt-cache pkgnames > apt_cache_pkgs.txt
+  apt-cache pkgnames > /home/alvi/SystemLogs/apt_cache_pkgs.txt
   
   #manually installed packages
   
-  apt-mark showmanual > apt_manual_pkgs.txt
+  apt-mark showmanual > /home/alvi/SystemLogs/apt_manual_pkgs.txt
   
   #snap packages
   
-  snap list > snap_pkgs.txt
+  snap list > /home/alvi/SystemLogs/snap_pkgs.txt
   
   #conda packages
   
-  conda list --export > conda_pkgs.txt
+  conda list --export > /home/alvi/SystemLogs/conda_pkgs.txt
 
 # copying system config files
 
-rsync -az --progress /etc /home/alvi/Tasks/System_logs/Backup #/etc directory
-rsync -az --progress /var /home/alvi/Tasks/System_logs/Backup #/var directory
-rysnc -az --progress /srv /home/alvi/Tasks/System_logs/Backup #/srv directory
-rsync -az --progress /opt /home/alvi/Tasks/System_logs/Backup #/opt directory
-rsync -az --progress /usr/local/ /home/alvi/Tasks/System_logs/Backup #/usr/local directory
-rsync -az --progress /boot /home/alvi/Tasks/System_logs/Backup # /boot directory
-rsync -az --progress /root /home/alvi/Tasks/System_logs/Backup # /root directory
-rsync -az --progress /usr/share/keyrings /home/alvi/Tasks/System_logs/Backup  # for CUDA public private keys
-rsync -az --progress /proc/sys/kernel/directory /home/alvi/Tasks/System_logs/Backup # kernel
+rsync -az --progress /etc $dest #/etc directory
+rsync -az --progress /var $dest #/var directory
+rysnc -az --progress /srv $dest #/srv directory
+rsync -az --progress /opt $dest #/opt directory
+rsync -az --progress /usr/local/ $dest #/usr/local directory
+rsync -az --progress /boot $dest # /boot directory
+rsync -az --progress /root $dest # /root directory
+rsync -az --progress /usr/share/keyrings $dest # for CUDA public private keys
+rsync -az --progress /proc/sys/kernel/directory $dest #kernel
 
 # files in home directory 
 
-rsync -az --progress ~/.bashrc /home/alvi/Tasks/System_logs/Backup/home
-rsync -az --progress ~/.bash_aliases /home/alvi/Tasks/System_logs/Backup/home
-rsync -az --progress ~/.vimrc /home/alvi/Tasks/System_logs/Backup/home
-rsync -az --progress ~/task.rc /home/alvi/Tasks/System_logs/Backup/home
-rsync -az --progress ~/.profile /home/alvi/Tasks/System_logs/Backup/home
-rsync -az --progress ~/.xinitrc /home/alvi/Tasks/System_logs/Backup/home
-rsync -az --progress ~/.gitconfig /home/alvi/Tasks/System_logs/Backup/home
-rsync -az --progress ~/.ssh/config /home/alvi/Tasks/System_logs/Backup/home
-rsync -az --progress ~/.profile /home/alvi/Tasks/System_logs/Backup/home
-rsync -az --progress ~/.editor /home/alvi/Tasks/System_logs/Backup/home
+rsync -az --progress ~/.bashrc $dest_home
 
 
-#cp ~/.bash_history  /home/alvi/Tasks/System_logs/Backup 
+rsync -az --progress ~/.bash_aliases $dest_home
+
+
+rsync -az --progress ~/.vimrc $dest_home
+
+
+rsync -az --progress ~/task.rc $dest_home
+
+
+rsync -az --progress ~/.profile $dest_home
+
+
+rsync -az --progress ~/.xinitrc $dest_home
+
+
+rsync -az --progress ~/.gitconfig $dest_home
+
+
+rsync -az --progress ~/.ssh/config $dest_home
+
+
+rsync -az --progress ~/.profile $dest_home
+
+
+rsync -az --progress ~/.editor $dest_home
+
+
+#stores history of terminal commands
+history > /home/alvi/SystemLogs/history.txt
 
