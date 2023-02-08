@@ -1,5 +1,9 @@
 #! /bin/bash
 
+HISTFILE=~/.bash_history
+
+set -o history
+
 dest=`/home/alvi/Tasks/System_logs/Backup`
 
 # system log
@@ -7,6 +11,9 @@ journalctl --system --since "7 days ago" > syslog.txt
 
 # kernel log
 journalctl -t kernel --since "7 days ago" > kernellog.txt
+
+# for getting history of terminal commands with timestamps
+history -a > history.txt
 
 
 # list apt_packages
@@ -28,28 +35,29 @@ journalctl -t kernel --since "7 days ago" > kernellog.txt
 
 # copying system config files
 
-rsync -avz --progress /etc /home/alvi/Tasks/System_logs/Backup #/etc directory
-rsync -avz --progress /var /home/alvi/Tasks/System_logs/Backup #/var directory
-rysnc -avz --progress /srv /home/alvi/Tasks/System_logs/Backup #/srv directory
-rsync -avz --progress /opt /home/alvi/Tasks/System_logs/Backup #/opt directory
-rsync -avz --progress /usr/local/ /home/alvi/Tasks/System_logs/Backup #/usr/local directory
-rsync -avz --progress /boot/grub/grub.cfg home/alvi/Tasks/System_logs/Backup # grub config file
-rsync -avz --progress /root home/alvi/Tasks/System_logs/Backup # /root directory
-rsync -avz --progress /usr/share/keyrings home/alvi/Tasks/System_logs/Backup  # for CUDA public private keys
+rsync -az --progress /etc /home/alvi/Tasks/System_logs/Backup #/etc directory
+rsync -az --progress /var /home/alvi/Tasks/System_logs/Backup #/var directory
+rysnc -az --progress /srv /home/alvi/Tasks/System_logs/Backup #/srv directory
+rsync -az --progress /opt /home/alvi/Tasks/System_logs/Backup #/opt directory
+rsync -az --progress /usr/local/ /home/alvi/Tasks/System_logs/Backup #/usr/local directory
+rsync -az --progress /boot /home/alvi/Tasks/System_logs/Backup # /boot directory
+rsync -az --progress /root /home/alvi/Tasks/System_logs/Backup # /root directory
+rsync -az --progress /usr/share/keyrings /home/alvi/Tasks/System_logs/Backup  # for CUDA public private keys
+rsync -az --progress /proc/sys/kernel/directory /home/alvi/Tasks/System_logs/Backup # kernel
 
 # files in home directory 
 
-rsync -avz --progress ~/.bashrc /home/alvi/Tasks/System_logs/Backup/home
-rsync -avz --progress ~/.bash_aliases /home/alvi/Tasks/System_logs/Backup/home
-rsync -avz --progress ~/.vimrc /home/alvi/Tasks/System_logs/Backup/home
-rsync -avz --progress ~/task.rc /home/alvi/Tasks/System_logs/Backup/home
+rsync -az --progress ~/.bashrc /home/alvi/Tasks/System_logs/Backup/home
+rsync -az --progress ~/.bash_aliases /home/alvi/Tasks/System_logs/Backup/home
+rsync -az --progress ~/.vimrc /home/alvi/Tasks/System_logs/Backup/home
+rsync -az --progress ~/task.rc /home/alvi/Tasks/System_logs/Backup/home
+rsync -az --progress ~/.profile /home/alvi/Tasks/System_logs/Backup/home
+rsync -az --progress ~/.xinitrc /home/alvi/Tasks/System_logs/Backup/home
+rsync -az --progress ~/.gitconfig /home/alvi/Tasks/System_logs/Backup/home
+rsync -az --progress ~/.ssh/config /home/alvi/Tasks/System_logs/Backup/home
+rsync -az --progress ~/.profile /home/alvi/Tasks/System_logs/Backup/home
+rsync -az --progress ~/.editor /home/alvi/Tasks/System_logs/Backup/home
 
-# for getting history of terminal commands with timestamp
 
-
-
-
-
-
-
+#cp ~/.bash_history  /home/alvi/Tasks/System_logs/Backup 
 
