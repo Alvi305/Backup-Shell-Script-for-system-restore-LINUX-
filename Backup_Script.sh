@@ -4,19 +4,19 @@
 # MODULE 1 
 
 # INPUT SRC DIRECTORY TO COPY FROM  --CHANGE THIS
-src=`ls -dR /home/alvi/TAKS/testfolder/*` 
+src_dir=`ls -dR /home/alvi/TAKS/testfolder/*` 
 
 # DESTINATION DIRECTORY TO COPY FILES TO
 dest_dir="/home/alvi/TAKS/desttest"
 
  #blacklistfile   --CHANGE THIS
-blklist_file="/home/alvi/TAKS/blacklist.txt" 
+blacklist_file="/home/alvi/TAKS/blacklist.txt" 
 
 #whitelist extension text file   --CHANGE THIS
-whtlist_file="/home/alvi/TAKS/whitelist_ext.txt" 
+whitelist_file="/home/alvi/TAKS/whitelist_ext.txt" 
 
 #array for holding blacklist directories
-blk_arr=() 
+black_arr=() 
 
 #array for whitelist file extension
 white_arr=() 
@@ -25,8 +25,8 @@ white_arr=()
 # Read blklist dirs into array
 
 while IFS= read -r line; do
-	blk_arr+=("$line")
-done < $blklist_file
+	black_arr+=("$line")
+done < $blacklist_file
 
 
 
@@ -36,14 +36,14 @@ echo -e "-------------------------------------------- "
 # print out blklist directories
 echo "blacklist dirs are:"
 
-for i in ${blk_arr[@]}; do
+for i in ${black_arr[@]}; do
 	echo $i
 done
 
 # Read whitelist exts into array
 while IFS= read -r line; do
 	white_arr+=("$line")
-done < $whtlist_file
+done < $whitelist_file
 
 echo -e "-------------------------------------------- "
 
@@ -63,7 +63,7 @@ echo -e "------------------------------------------- "
 
 echo -e "------------FILE COPY STARTS---------------"
 
-for i in  $src
+for i in  $src_dir
 
 do
 
@@ -76,7 +76,7 @@ do
     	echo -e "$i is not empty"
     
         # if  1st depth directory is not a blacklist directory then carry on
-    	if [[ ! " ${blk_arr[*]} " =~ " ${i} " ]]; then 
+    	if [[ ! " ${black_arr[*]} " =~ " ${i} " ]]; then 
         
     	  echo -e "$i is not blacklisted"
     
@@ -135,17 +135,21 @@ set -o history
 
 dest_syslog="/home/alvi/SystemLogs"
 dest_home="/home/alvi/SystemLogs/home"
-
+usr_local="/home/alvi/SystemLogs/usr"
+keyrings_dir="/home/alvi/SystemLogs/usr/share/keyrings"
+sys_usr_kernel="/home/alvi/SystemLogs/proc/sys/kernel"
 
 # variables for text files to store system critical info
 
 sys_log="/syslog.txt"
 kernel="/kernellog.txt"
-apt_cache ="/apt_cache_pkgs.txt"
+apt_cache="/apt_cache_pkgs.txt"
 apt_manual="/apt_manual_pkgs.txt"
 snap="/snap_pkgs.txt"
 conda="/conda_pkgs.txt"
 history="/history.txt"
+
+
 
 
 # system log
@@ -185,7 +189,7 @@ rysnc -az --progress /srv $dest_syslog
 rsync -az --progress /opt $dest_syslog
 
 #/usr/local directory
-rsync -az --progress /usr/local/ $dest_syslog
+rsync -az --progress /usr/local/ $usr_local
 
 # /boot directory
 rsync -az --progress /boot $dest_syslog
@@ -194,10 +198,10 @@ rsync -az --progress /boot $dest_syslog
 rsync -az --progress /root $dest_syslog
 
 # for CUDA public private keys
-rsync -az --progress /usr/share/keyrings $dest_syslog
+rsync -az --progress /usr/share/keyrings $keyrings_dir
 
 #kernel
-rsync -az --progress /proc/sys/kernel/directory $dest_syslog
+rsync -az --progress /proc/sys/kernel $sys_usr_kernel
 
 # files in home directory 
 
