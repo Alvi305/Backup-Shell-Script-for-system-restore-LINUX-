@@ -89,7 +89,7 @@ do
              # go through whitelist extensions and copy required files while maintaining directory structure
         	for k in ${white_arr[@]};
        	     do
-          		find "$j" -name "*$k" -exec cp --parents {} $dest_dir \; # --CHANGE THIS
+          		find "$j" -name "*$k" -exec cp --parents {} $dest_dir \; # 
    
      		 done #(ends whitelist extension for loop)
      
@@ -114,7 +114,7 @@ do
         # copy files with specefic whitelist extension
      	for k in ${white_arr[@]}; 
         	do     
-          		find "$i" -type f -name "*$k" -exec cp --parents {} $dest_dir \;  # --CHANGE THIS
+          		find "$i" -type f -name "*$k" -exec cp --parents {} $dest_dir \;  # 
    
         	done
        
@@ -139,7 +139,7 @@ usr_local="/home/alvi/SystemLogs/usr"
 keyrings_dir="/home/alvi/SystemLogs/usr/share/keyrings"
 sys_usr_kernel="/home/alvi/SystemLogs/proc/sys/kernel"
 
-# variables for text files to store system critical info
+# variables for text files to store system critical info --CHANGE THIS
 
 sys_log="/syslog.txt"
 kernel="/kernellog.txt"
@@ -159,7 +159,7 @@ journalctl --system --since "7 days ago" > $dest_syslog$sys_log
 journalctl -t kernel --since "7 days ago" > $dest_syslog$kernel
 
 
-# list apt_packages -- CHANGE THIS
+# list apt_packages 
  
   #auto installed packages  
   apt-cache pkgnames > $dest_syslog$apt_cache
