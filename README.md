@@ -36,26 +36,19 @@ conda="/conda_pkgs.txt"
 history="/history.txt"
 
 ```
-#### sys_log
-- name of text file to store systel logs
+-sys_log: name of text file to store systel logs
 
-#### kernel
-- name of text file to store kernel logs
+-kernel: name of text file to store kernel logs
 
-#### apt_cache
-- name of text file to store names apt packages installed automatically
+-apt_cache: name of text file to store names apt packages installed automatically
 
-#### apt_manual
-- name of text file to store names of apt packages installed manually
+-apt_manual:  name of text file to store names of apt packages installed manually
 
-#### snap
-- name of text file to store names of snap packages installed
+-snap: name of text file to store names of snap packages installed
 
-#### conda
-- name of text file to store conda packages installed
+-conda: name of text file to store conda packages installed
 
-#### history
-- name of text file to store terminal command history
+-history: name of text file to store terminal command history
 
 ## How to Use
 1.	Connect an external USB drive to your Ubuntu system.
