@@ -162,7 +162,7 @@ set -o history
 dest_syslog="$repository_path/SystemLogs"
 
 dest_home="/home"
-usr_local="/usr"
+usr_local="/usr/local"
 keyrings_dir="/share/keyrings"
 sys_usr_kernel="/proc/sys/kernel"
 
@@ -270,7 +270,7 @@ rsync -az --progress /boot $dest_syslog
 # /root directory
 rsync -az --progress /root $dest_syslog
 
-# for CUDA public private keys
+# for GPG keys
 rsync -az --progress /usr/share/keyrings $dest_syslog$usr_local$keyrings_dir
 
 #kernel
