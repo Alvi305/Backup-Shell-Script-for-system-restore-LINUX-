@@ -10,7 +10,7 @@ Copies all the files within the drives accessible from the Ubuntu OS to the conn
 •	The file is not located in a directory blacklisted in the configuration.
 •	The file extension is included in a whitelist of file extensions.
 
-The variables **blacklist_file** and **whitelist_file** refers to the required text files in the repository.
+
 
 
 ## Module 2: System Backup
@@ -49,17 +49,17 @@ src_dir=`ls -dR (/home/*)`
 
 ### Destination Directories
 
-Both the destination directories for user's file backups and system critical information are created within the repository. Change user's file backups as needed by specifying the preferred directory path in the  varibale **dest_dir** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is hightled in brackets below:
+Both the destination directories for user's file backups and system critical information are created within the repository. Change user's file backups as needed by specifying the preferred directory path in the  varibale **dest_dir** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is hightled between brackets below:
 
 ```
 dest_dir="($repository_path/Backups)"
 
 ```
 
-Change system critical information as needed by specifying the preferred directory path in the  varibale **dest_syslog** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is hightled in brackets below:
+Change system critical information as needed by specifying the preferred directory path in the  varibale **dest_syslog** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is hightled betwwen brackets below:
 
 ```
-dest_syslog="$repository_path/SystemLogs"
+dest_syslog="($repository_path/SystemLogs)"
 
 ```
 
