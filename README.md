@@ -21,7 +21,7 @@ This module copies system-critical information of the Ubuntu OS to the external 
 -	List of installed packages (from apt, conda, and snap)
 -	System logs and command history.
 
-Text files, which are used to store system critical information, are created  in the destination directory within the repository when you run the script . The  default path for the destination directory is the SystemLogs folder.
+Text files, which are used to store system critical information, are created  in the destination directory within the repository when you run the script . The  default path for the destination directory is the SystemLogs folder within the repository.
 
 Description of the text files is given below:
 
