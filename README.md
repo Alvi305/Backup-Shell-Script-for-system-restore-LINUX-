@@ -38,7 +38,7 @@ conda="/conda_pkgs.txt"
 history="/history.txt"
 
 ```
-The variable declaration can be found at line 171 of [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). 
+The variable declaration can be found at **line 171** of [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). 
 
 Description of the variables is given below:
 
@@ -71,7 +71,7 @@ Input the blacklist directories into the blacklist directories text file. The te
 Input required file extensions into the whitelist extension text file. The text file is located in the repository and named  as [whitelist_ext.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/whitelist_ext.txt).
 
 ### Source Directory
-The default source directory from where to copy files for backup is the user's home. Change the directory as required by editing the directory path, highlighted in brackets below, on line 8 of the  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh):
+The default source directory from where to copy files for backup is the user's home. Change the directory as required by editing the directory path, highlighted in brackets below, on **line 8** of the  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh):
 
 ```
 # MODULE 1 
@@ -84,14 +84,14 @@ src_dir=`ls -dR (/home/*)`
 
 ### Destination Directories
 
-Both the destination directories for the user's file backups and system critical information are created within the repository by default. Change the user's file backup directory as needed by specifying the preferred directory path in the  variable **dest_dir** on line 17 of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is highlighted between brackets below:
+Both the destination directories for the user's file backups and system critical information are created within the repository by default. Change the user's file backup directory as needed by specifying the preferred directory path in the  variable **dest_dir** on **line 17** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). The path that needs to edited is highlighted between brackets below:
 
 ```
 dest_dir="($repository_path/Backups)"
 
 ```
 
-Change system-critical information directory as needed by specifying the preferred directory path in the  variable **dest_syslog** on line 162 of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is hightled between brackets below:
+Change system-critical information directory as needed by specifying the preferred directory path in the  variable **dest_syslog** on line 162 of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). The path that needs to edited is hightled between brackets below:
 
 ```
 dest_syslog="($repository_path/SystemLogs)"
