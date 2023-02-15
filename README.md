@@ -21,10 +21,7 @@ This module copies system-critical information of the Ubuntu OS to the external 
 -	List of installed packages (from apt, conda, and snap)
 -	System logs and command history.
 
-
-The following variables are used to make text files to store system critical information about the system. The text files created are stored in the destination directory for system critical information which by default is the SystemLogs folder created within the repository when you run the script.
-
-The variable declaration can be found at **line 171** of [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). 
+Text files, which are used to store system critical information, are created  in the destination directory within the repository when you run the script . The  default path for the destination directory is the SystemLogs folder.
 
 Description of the text files is given below:
 
