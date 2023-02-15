@@ -24,37 +24,23 @@ This module copies system-critical information of the Ubuntu OS to the external 
 
 The following variables are used to make text files to store system critical information about the system. The text files created are stored in the destination directory for system critical information which by default is the SystemLogs folder created within the repository when you run the script.
 
-Description of the variables are as follows:
-
-```
-# variables for text files to store system critical info
-
-sys_log="/syslog.txt"
-kernel="/kernellog.txt"
-apt_cache="/apt_cache_pkgs.txt"
-apt_manual="/apt_manual_pkgs.txt"
-snap="/snap_pkgs.txt"
-conda="/conda_pkgs.txt"
-history="/history.txt"
-
-```
 The variable declaration can be found at **line 171** of [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). 
 
-Description of the variables is given below:
+Description of the text files is given below:
 
-- sys_log: name of the text file used to store system logs
+- syslog.txt: stores system logs
 
-- kernel: name of the text file used to store kernel logs
+- kernellog.txt: stores kernel logs
 
-- apt_cache: name of the text file used to store names apt packages installed automatically
+- apt_cache_pkgs.txt: stores names apt packages installed automatically
 
-- apt_manual:  name of the  text file used to store names of apt packages installed manually
+- apt_manual_pkgs.txt:  stores names of apt packages installed manually
 
-- snap: name of the text file used to store names of snap packages installed
+- snap_pkgs.txt: stores names of snap packages installed
 
-- conda: name of the text file used to store conda packages installed
+- conda_pkgs.txt: stores conda packages installed
 
-- history: name of the text file used to store terminal command history
+- history.txt: stores terminal command history
 
 ## How to Use
 1.	Connect an external USB drive to your Ubuntu system.
@@ -64,13 +50,21 @@ Description of the variables is given below:
  
 ## Configuration
 
-### Blacklist Directories
+You need to change the contents of the following files: [blacklist.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/blacklist.txt) and  [whitelist_ext.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/whitelist_ext.txt). Further details are given below.
+
+
+
+
+
+#### Blacklist Directories
 Input the blacklist directories into the blacklist directories text file. The text file is located in the repository  and named  as [blacklist.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/blacklist.txt).
 
-### Whitelist Extensions
+#### Whitelist Extensions
 Input required file extensions into the whitelist extension text file. The text file is located in the repository and named  as [whitelist_ext.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/whitelist_ext.txt).
 
-### Source Directory
+You may also change the source directory and destination directories mentioned in the script to your preference to something other than the default paths provided.Details are provided below.
+
+#### Source Directory
 The default source directory from where to copy files for backup is the user's home. Change the directory as required by editing the directory path, highlighted in brackets below, on **line 8** of the  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh):
 
 ```
