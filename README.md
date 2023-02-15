@@ -85,7 +85,7 @@ dest_dir="($repository_path/Backups)"
 
 ```
 
-Change system critical information as needed by specifying the preferred directory path in the  varibale **dest_syslog** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is hightled betwwen brackets below:
+Change system critical information directory as needed by specifying the preferred directory path in the  varibale **dest_syslog** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is hightled betwwen brackets below:
 
 ```
 dest_syslog="($repository_path/SystemLogs)"
