@@ -7,8 +7,8 @@ A shell script executable on Ubuntu terminal that can copy files from the system
 ## Module 1: File Copy
 Copies all the files within the drives accessible from the Ubuntu OS to the connected external USB drive, but only if the following conditions are met:
 
-•	The file is not located in a directory blacklisted in the configuration.
-•	The file extension is included in a whitelist of file extensions.
+-	The file is not located in a directory blacklisted in the configuration.
+-	The file extension is included in a whitelist of file extensions.
 
 
 
@@ -17,9 +17,45 @@ Copies all the files within the drives accessible from the Ubuntu OS to the conn
 
 Copies system-critical information of the Ubuntu OS to the external drive so the system can be recovered to its former state even if the OS undergoes a clean reinstall after a catastrophic system failure. This information includes:
 
-•	System configuration files
-•	List of installed packages (from apt, conda, and another commonly used package manager)
-•	System logs and command history.
+-	System configuration files
+-	List of installed packages (from apt, conda, and another commonly used package manager)
+-	System logs and command history.
+
+
+The following variables are used to make text files to store system critical information of the system.
+
+```
+# variables for text files to store system critical info
+
+sys_log="/syslog.txt"
+kernel="/kernellog.txt"
+apt_cache="/apt_cache_pkgs.txt"
+apt_manual="/apt_manual_pkgs.txt"
+snap="/snap_pkgs.txt"
+conda="/conda_pkgs.txt"
+history="/history.txt"
+
+```
+#### sys_log
+- name of text file to store systel logs
+
+#### kernel
+- name of text file to store kernel logs
+
+#### apt_cache
+- name of text file to store names apt packages installed automatically
+
+#### apt_manual
+- name of text file to store names of apt packages installed manually
+
+#### snap
+- name of text file to store names of snap packages installed
+
+#### conda
+- name of text file to store conda packages installed
+
+#### history
+- name of text file to store terminal command history
 
 ## How to Use
 1.	Connect an external USB drive to your Ubuntu system.
