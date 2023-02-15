@@ -5,7 +5,7 @@
 
 # INPUT SRC DIRECTORY TO COPY FROM  --CHANGE THIS
 
-src_dir=`ls -dR /home/alvi/TAKS/testfolder/*` 
+src_dir=`ls -dR /home/*` 
 
 # DESTINATION DIRECTORY TO COPY FILES TO
 
@@ -50,6 +50,9 @@ white_arr=()
 while IFS= read -r line; do
 	black_arr+=("$line")
 done < $blacklist_file
+
+# add Backup directory to blacklist directories
+black_arr+=($dest_dir)
 
 
 
