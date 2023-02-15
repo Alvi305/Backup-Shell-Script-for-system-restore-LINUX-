@@ -49,7 +49,7 @@ src_dir=`ls -dR (/home/*)`
 
 ### Destination Directories
 
-Both the destination directories for user's file backups and system critical information are created within the repository. Change user's file backups as needed by specifying the preferred directory path in the  varibale **dest_dir** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is hightled between brackets below:
+Both the destination directories for user's file backups and system critical information are created within the repository by default. Change user's file backups as needed by specifying the preferred directory path in the  varibale **dest_dir** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is hightled between brackets below:
 
 ```
 dest_dir="($repository_path/Backups)"
