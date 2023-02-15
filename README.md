@@ -2,7 +2,7 @@
 
 ## Description
 
-A shell script executable on the Ubuntu terminal that copies files from the system to an external USB drive, given that the files meet certain conditions, and copies system critical information to the external drive so the system can be recovered to its former state. The script has two modules:
+A shell script executable on the Ubuntu terminal that copies files from the system to an external USB drive, given that the files meet certain conditions, and copies system critical information to the external drive so the system can be recovered to its former state. The script has two modules: Module 1 and Module 2.
 
 ## Module 1: File Copy
 This module copies all the files within the drives accessible from the Ubuntu OS to the connected external USB drive, but only if the following conditions are met:
