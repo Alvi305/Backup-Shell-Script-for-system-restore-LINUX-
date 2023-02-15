@@ -65,10 +65,10 @@ Description of the variables is given below:
 ## Configuration
 
 ### Blacklist Directories
-Input the blacklist directories into the blacklist directories text file. The text file is located in the repository named [blacklist.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/blacklist.txt).
+Input the blacklist directories into the blacklist directories text file. The text file is located in the repository  and named  as [blacklist.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/blacklist.txt).
 
 ### Whitelist Extensions
-Input required file extensions into the whitelist extension text file. The text file is located in the repository named  [whitelist_ext.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/whitelist_ext.txt).
+Input required file extensions into the whitelist extension text file. The text file is located in the repository and named  as [whitelist_ext.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/whitelist_ext.txt).
 
 ### Source Directory
 The default source directory from where to copy files for backup is the user's home. Change the directory as required by editing the directory path, highlighted in brackets below, on line 8 of the  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh):
