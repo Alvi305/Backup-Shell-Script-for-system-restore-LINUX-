@@ -31,7 +31,7 @@ This module copies system-critical information of the Ubuntu OS to the external 
 5.	Run the script using the following command: `sudo ./Backup_Script.sh`. Sudo is required since it copies system critical information to destination directory.
  
 ## Configuration
-The whitelist extensions are inputted into a whitelist extension text file and the blacklist directories are entered into a blacklist directories text file. The complete path of the directory need to be specified. In addition, users can choose what system critical information they want to backup. The directories and variables to change are in Module 2 of the code in the following section:
+Input required file extensions into the whitelist extension text file and the blacklist directories the blacklist directories text file. These text files are located in the repository named as [whitelist_ext.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/whitelist_ext.txt) and [blacklist.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/blacklist.txt).
 ```
 # destination directory for SystemLog backup --CHANGE THIS
 
@@ -56,8 +56,6 @@ This provides users flexibility on what to backup and what not to.
 ## Logging
 The script provides informative command-line logging during the copy process to enhance the user experience. This logging includes what directory is being copies, indication of the copy progress and any errors that may occur.
 
-## Conclusion
 
-This shell script provides a convenient way to copy files and system-critical information from an Ubuntu system to an external USB drive. The script has been designed to be easy to use and configure, with informative command-line logging to enhance the user experience.
 
 
