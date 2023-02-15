@@ -5,53 +5,63 @@
 A shell script executable on Ubuntu terminal that can copy files from the system to an external USB drive, given that the files meet certain conditions. In addition, it copies system critical information to the external drive so the system can be recovered to its former state. The script has two modules:
 
 ## Module 1: File Copy
-
-This module copies all the files within the drives accessible from the Ubuntu OS to the connected external USB drive, but only if the following conditions are met:
+Copies all the files within the drives accessible from the Ubuntu OS to the connected external USB drive, but only if the following conditions are met:
 
 •	The file is not located in a directory blacklisted in the configuration.
 •	The file extension is included in a whitelist of file extensions.
 
-The whitelist and blacklist can be easily configured by the user, and the original directory tree will be preserved during the copy process.  Additionally, informative command-line logging is provided to enhance the user experience. 
+The variables **blacklist_file** and **whitelist_file** refers to the required text files in the repository.
+
 
 ## Module 2: System Backup
 
-This module copies system-critical information of the Ubuntu OS to the external drive so the system can be recovered to its former state even if the OS undergoes a clean reinstall after a catastrophic system failure. This information includes:
+Copies system-critical information of the Ubuntu OS to the external drive so the system can be recovered to its former state even if the OS undergoes a clean reinstall after a catastrophic system failure. This information includes:
 
 •	System configuration files
 •	List of installed packages (from apt, conda, and another commonly used package manager)
 •	System logs and command history.
 
-## Usage
+## How to Use
 1.	Connect an external USB drive to your Ubuntu system.
-2.	In the destination directory, the following directories will need to be made: 
-     - /usr/local/
-     - /usr/share/keyrings
-     - /proc/sys/kernel
-4.	Open a terminal window and navigate to the directory where the script is located.
+2.	Clone the repository using `git clone https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-`
+3.	Open a terminal window and navigate to the directory where the repository is located.
 5.	Run the script using the following command: `sudo ./Backup_Script.sh`. Sudo is required since it copies system critical information to destination directory.
  
 ## Configuration
-Input required file extensions into the whitelist extension text file and the blacklist directories the blacklist directories text file. These text files are located in the repository named as [whitelist_ext.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/whitelist_ext.txt) and [blacklist.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/blacklist.txt).
+
+### Blacklist Directories
+Input the blacklist directories into the blacklist directories text file. The text file is located in the repository named [blacklist.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/blacklist.txt).
+
+### Whitelist Extensions
+Input required file extensions into the whitelist extension text file. The text file is located in the repository named as [whitelist_ext.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/whitelist_ext.txt).
+
+### Source Directory
+Default source directory from where to copy files for backup is the user's home. Change the directory as required by editing the directory path, highlighted in brackets below, in the following code snippet of the [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh):
+
 ```
-# destination directory for SystemLog backup --CHANGE THIS
+# MODULE 1 
 
-dest_syslog="/home/alvi/SystemLogs"
-dest_home="/home/alvi/SystemLogs/home"
-usr_local="/home/alvi/SystemLogs/usr"
-keyrings_dir="/home/alvi/SystemLogs/usr/share/keyrings"
-sys_usr_kernel="/home/alvi/SystemLogs/proc/sys/kernel"
+# INPUT SRC DIRECTORY TO COPY FROM  --CHANGE THIS
 
-# variables for text files to store system critical info --CHANGE THIS
+src_dir=`ls -dR (/home/*)` 
 
-sys_log="/syslog.txt"
-kernel="/kernellog.txt"
-apt_cache="/apt_cache_pkgs.txt"
-apt_manual="/apt_manual_pkgs.txt"
-snap="/snap_pkgs.txt"
-conda="/conda_pkgs.txt"
-history="/history.txt"
 ```
-This provides users flexibility on what to backup and what not to.
+
+### Destination Directories
+
+Both the destination directories for user's file backups and system critical information are created within the repository. Change user's file backups as needed by specifying the preferred directory path in the  varibale **dest_dir** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is hightled in brackets below:
+
+```
+dest_dir="($repository_path/Backups)"
+
+```
+
+Change system critical information as needed by specifying the preferred directory path in the  varibale **dest_syslog** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). Path that needs to edited is hightled in brackets below:
+
+```
+dest_syslog="$repository_path/SystemLogs"
+
+```
 
 ## Logging
 The script provides informative command-line logging during the copy process to enhance the user experience. This logging includes what directory is being copies, indication of the copy progress and any errors that may occur.
