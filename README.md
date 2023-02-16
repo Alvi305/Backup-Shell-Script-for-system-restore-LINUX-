@@ -56,7 +56,7 @@ Module 2 copies all system-critical information of the Ubuntu OS to a destinatio
 
 1. Source Directory
 
-    Change the value of `src_dir` from [line 8 of Backup_Script.sh](Backup_Script.sh#L8) to the directory you would copy the files from. (Default: The home directory of all user accounts)
+    Change the value of `src_dir` from [line 8 of Backup_Script.sh](Backup_Script.sh#L8) to the directory you would copy the files from. (Default: The home directories of all user accounts)
 
 2. Destination Directory
 
