@@ -2,96 +2,90 @@
 
 ## Description
 
-A shell script executable on the Ubuntu terminal that copies files from the system to an external USB drive, given that the files meet certain conditions, and copies system critical information to the external drive so the system can be recovered to its former state. The script has two modules: Module 1 and Module 2.
+A shell script for backing up the Ubuntu system. It has two modules: 1. a customisable full directory backup and 2. system-critical information backup.
 
-## Module 1: File Copy
-This module copies all the files within the drives accessible from the Ubuntu OS to the connected external USB drive, but only if the following conditions are met:
+### Module 1: File Backup
+Module 1 copies all files from a source directory to a destination directory. The customisable parameters can be found in [Configuration — Module 1](#module-1).
 
--	The file is not located in a directory blacklisted in the configuration.
--	The file extension is included in a whitelist of file extensions.
+### Module 2: System-Critical Information Backup
 
+Module 2 copies all system-critical information of the Ubuntu OS to a destination directory (See [Configuration — Module 2](#module-2) for editing the path to the destination directory). This includes: 
 
+1. System configuration files
 
+    - All system files from the following folders:
 
-## Module 2: System Backup
+        - `/etc`
+        - `/var`
+        - `/srv`
+        - `/opt`
+        - `/usr/local/`
+        - `/boot`
+        - `/root`
+        - `/usr/share/keyrings`
+        - `/proc/sys/kernel`
 
-This module copies system-critical information of the Ubuntu OS to the external drive so the system can be recovered to its former state even if the OS undergoes a clean reinstall after a catastrophic system failure. This information includes:
+    - All the following system files from the current user account:
 
--	System configuration files
--	List of installed packages (from apt, conda, and snap)
--	System logs and command history.
+        - `.bashrc`
+        - `.bash_aliases`
+        - `.vimrc`
+        - `task.rc`
+        - `.profile`
+        - `.xinitrc`
+        - `.gitconfig`
+        - `.ssh/config`
+        - `.editor`
 
-Text files, which are used to store system critical information, are created  in the destination directory within the repository when you run the script . The  default path for the destination directory is the SystemLogs folder within the repository.
+2. List of installed packages (from apt, conda, and snap)
 
-Description of the text files is given below:
+    - apt_cache_pkgs.txt: A list of all installed apt packages (manually installed packages and automatically installed package dependencies)
+    - apt_manual_pkgs.txt: A list of all manually installed apt packages without dependencies
+    - snap_pkgs.txt: A list of all installed snap packages
+    - conda_pkgs.txt: A list of all installed conda packages
 
-- syslog.txt: stores system logs
+3. System logs and command history
 
-- kernellog.txt: stores kernel logs
-
-- apt_cache_pkgs.txt: stores names apt packages installed automatically
-
-- apt_manual_pkgs.txt:  stores names of apt packages installed manually
-
-- snap_pkgs.txt: stores names of snap packages installed
-
-- conda_pkgs.txt: stores conda packages installed
-
-- history.txt: stores terminal command history
-
-## How to Use
-1.	Connect an external USB drive to your Ubuntu system.
-2.	Clone the repository using `git clone https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-`
-3.	Open a terminal window and navigate to the directory where the repository is located.
-5.	Run the script using the following command: `sudo ./Backup_Script.sh`. Sudo is required since it copies system-critical information to the destination directory.
+    - syslog.txt: System logs
+    - kernellog.txt: Kernel logs
+    - history.txt: Terminal command history of the current user
  
 ## Configuration
 
-You need to change the contents of the following files: [blacklist.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/blacklist.txt) and  [whitelist_ext.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/whitelist_ext.txt). Further details are given below.
+### Module 1
 
+1. Source Directory
 
+    Change the value of `src_dir` from [line 8 of Backup_Script.sh](Backup_Script.sh#L8) to the directory you would copy the files from. (Default: The home directory of all user accounts)
 
+2. Destination Directory
 
+    Change the value of  `dest_dir` from [line 17 of Backup_Script.sh](Backup_Script.sh#L17) to the directory you would copy the files to. In most use cases the destination directory should lie within an external drive. (Default: A subdirectory `/Backups/` will be created within this repository.)
 
-#### Blacklist Directories
-Input the blacklist directories into the blacklist directories text file. The text file is located in the repository  and named  as [blacklist.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/blacklist.txt).
+3.  Blacklisted subdirectories
 
-#### Whitelist Extensions
-Input required file extensions into the whitelist extension text file. The text file is located in the repository and named  as [whitelist_ext.txt](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/whitelist_ext.txt).
+    Edit [`blacklist.txt`](blacklist.txt) to list the absolute paths of directories not to be copied to the destination directory. Any path that is not a subdirectory of `src_dir` will not affect the shell script.
 
-You may also change the source directory and destination directories mentioned in the script to your preference to something other than the default paths provided.Details are provided below.
+4.  Whitelisted extensions
 
-#### Source Directory
-The default source directory from where to copy files for backup is the user's home. Change the directory as required by editing the directory path, highlighted in brackets below, on **line 8** of the  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh):
+    Edit [`whitelist_ext.txt`](whitelist_ext.txt) to list the file extensions of files to be copied to the destination directory. If all files are to be copied regardless of file extensions, replace the contents of [`whitelist_ext.txt`](whitelist_ext.txt) with a single `*`. (Default: only .py and .md files.)
 
-```
-# MODULE 1 
+### Module 2
 
-# INPUT SRC DIRECTORY TO COPY FROM  --CHANGE THIS
+1. Destination Directory
 
-src_dir=`ls -dR (/home/*)` 
+    Change the value of `dest_syslog` from [line 162 of Backup_Script.sh](Backup_Script.sh#L162) to the directory you would copy the system files to. In most use cases the destination directory should lie within an external drive. (Default: A subdirectory `/SystemLogs/` will be created within this repository.)
 
-```
+## Requirements
 
-### Destination Directories
+This script can only run on a Ubuntu OS.
 
-Both the destination directories for the user's file backups and system critical information are created within the repository by default. Change the user's file backup directory as needed by specifying the preferred directory path in the  variable **dest_dir** on **line 17** of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). The path that needs to edited is highlighted between brackets below:
+## Installation
 
-```
-dest_dir="($repository_path/Backups)"
+No installation or compilation is required.
 
-```
-
-Change system-critical information directory as needed by specifying the preferred directory path in the  variable **dest_syslog** on line 162 of  [Backup_Script.sh](https://github.com/Alvi305/Backup-Shell-Script-for-system-restore-LINUX-/blob/main/Backup_Script.sh). The path that needs to edited is hightled between brackets below:
-
-```
-dest_syslog="($repository_path/SystemLogs)"
-
-```
-
-## Logging
-The script provides informative command-line logging during the copy process to enhance the user experience. This logging includes what directory is being copied, an indication of the copy progress, and any errors that may occur.
-
-
-
-
+## How to Use
+1.	Clone the repository.
+2.  Edit the configuration parameters as necessary.
+3.	Navigate to the repository in the terminal.
+4.	Run the script with administrator privileges: `sudo ./Backup_Script.sh`.
