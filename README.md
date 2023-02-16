@@ -2,7 +2,7 @@
 
 ## Description
 
-A shell script for backing up the Ubuntu system. It has two modules: 1. a customisable full directory backup and 2. system-critical information backup.
+A shell script for backing up the Ubuntu system. It has two modules: 1. a customisable full directory backup and 2. a system-critical information backup.
 
 ### Module 1: File Backup
 Module 1 copies all files from a source directory to a destination directory (See [Configuration — Module 1](#module-1) for customisable parameters). 
