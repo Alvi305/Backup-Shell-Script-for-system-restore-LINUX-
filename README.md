@@ -63,7 +63,37 @@ Module 2 copies all system-critical information of the Ubuntu OS to a destinatio
      
  2. Destination Directory
  
-    Change the value of `dest_dir` from [line 17 of Backup_Script.sh](Backup_Script.sh#L17) to the directory you would copy the files to. In most use cases, the destination directory should lie within an external drive. (Default destination directory: A subdirectory `/Backups/` will be created within this reposityory.)
+    Change the value of `dest_dir` from [line 17 of Backup_Script.sh](Backup_Script.sh#L17) to the directory you would copy the files to. In most use cases, the destination directory should lie within an external drive. (Default destination directory: A subdirectory `/Backups/` will be created within this repository.)
+    
+3. Blacklisted subdirectories
+
+   Edit  [`blacklist.txt`](blacklist.txt) to list the absolute paths of directories not to be copied to the destination directory. Any path that is not a subdirectory of `src_dir` will not affect the shell script.
+   
+   
+4. Whitelisted extensions
+
+   Edit [`whitelist_ext.txt`](whitelist_ext.txt) to list the file extensions of files to be copied to the destination directory. If all files are to be copied regardless of file extensions, replace the contents of [`whitelist_ext.txt`](whitelist_ext.txt) with a single `*`. (Default: only .py and .md files.)
+   
+### Module 2
+
+1. Destination Directory
+
+   Change the value of the variable `dest_syslog` from [line 162 of Backup_Script.sh](Backup_Script.sh#L162) to the directory where you would copy the system files to. In most use cases, the destination directory should lie within an external drive. (Default: A subdirectory `/SystemLogs/` will be created within this repository.)
+   
+   
+## Requirements
+
+This script can only run on a Ubuntu OS.
+
+## Installation
+
+No installation or compilation is required.
+
+## How to Use
+1.	Clone the repository.
+2.  Edit the configuration parameters as necessary.
+3.	Navigate to the repository in the terminal.
+4.	Run the script with administrator privileges: `sudo ./Backup_Script.sh`.
 
 
 
