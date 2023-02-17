@@ -12,7 +12,7 @@ Module 1 copies all files from a source directory to a destination directory ( S
 
 ### Module 2: System-Critical Information Backup
 
-Module 2 copies all system-critical information of the Ubuntu OS to a destination directory ( See []() for editing the path to the destination directory). This includes: 
+Module 2 copies all system-critical information of the Ubuntu OS to a destination directory ( See [Configuration — Module 2](#module-2) for editing the path to the destination directory). This includes: 
 
 1. System configuration files
 
