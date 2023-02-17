@@ -42,11 +42,11 @@ Module 2 copies all system-critical information of the Ubuntu OS to a destinatio
        
   2. List of installed packages (from apt, conda, and snap)
   
-   - apt_cache_pkgs.txt: A list of all installed apt packages (manually installed packages and    automatically installed package dependencies)
+     - apt_cache_pkgs.txt: A list of all installed apt packages (manually installed packages and    automatically installed package dependencies)
    
-  - apt_manual_pkgs.txt: A list of all manually installed apt packages without dependencies
-  - snap_pkgs.txt: A list of all installed snap packages
-  - conda_pkgs.txt: A list of all installed conda packages
+     - apt_manual_pkgs.txt: A list of all manually installed apt packages without dependencies
+     - snap_pkgs.txt: A list of all installed snap packages
+     - conda_pkgs.txt: A list of all installed conda packages
   
  3. System logs and command history
  
